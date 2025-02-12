@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Borrow History</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .page-container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 80%;
+      max-width: 800px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table, th, td {
+      border: 1px solid #ddd;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-container">
+    <h2>Borrow History</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Book ID</th>
+          <th>Check Out Time</th>
+          <th>Check In Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% borrowHistory.forEach(record => { %>
+          <tr>
+            <td><%= record.b_id %></td>
+            <td><%= record.check_out_time %></td>
+            <td><%= record.check_in_time %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+
+</body>
+</html>

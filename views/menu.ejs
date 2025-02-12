@@ -1,0 +1,63 @@
+<!-- filepath: /views/menu.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .page-container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 80%;
+      max-width: 800px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    a {
+      display: block;
+      margin: 10px 0;
+      color: #007bff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-container">
+    <h1>Menu</h1>
+    <a href="/checkout-pattern">Checkout Pattern</a>
+    <a href="/reading-freq">Reading Frequency</a>
+    <a href="/popular-genres">Popular Genres</a>
+    <a href="/book-types">Book Types</a>
+    <a href="/trending-books">Trending Books</a>
+    <a href="/borrow-history/1">View Borrow History</a>
+    <a href="/current-borrowed/1">View Currently Borrowed Books</a>
+    <a href="/register">Register</a>
+    <a href="/checkin">Check-In</a>
+    <a href="/checkout">Check-Out</a>
+  </div>
+
+</body>
+</html>

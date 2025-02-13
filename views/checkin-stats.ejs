@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Check-in Statistics</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body
+    class="d-flex justify-content-center align-items-center vh-100 bg-light"
+  >
+    <div class="card p-4">
+      <h2 class="card-title text-center">Check-in Statistics</h2>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Return Date</th>
+            <th>Books Returned</th>
+            <th>Average Delay (days)</th>
+            <th>On-time Returns</th>
+            <th>Delayed Returns</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% stats.forEach(stat => { %>
+          <tr>
+            <td><%= stat.return_date %></td>
+            <td><%= stat.books_returned %></td>
+            <td><%= stat.avg_delay %></td>
+            <td><%= stat.on_time_returns %></td>
+            <td><%= stat.delayed_returns %></td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>

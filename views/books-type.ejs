@@ -1,71 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Book Types</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f9;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Types</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <body
+    class="d-flex justify-content-center align-items-center vh-100 bg-light"
+  >
+    <div class="card p-4">
+      <h2 class="card-title text-center">Book Types</h2>
+      <canvas id="bookTypesChart"></canvas>
+    </div>
 
-    .page-container {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      width: 80%;
-      max-width: 800px;
-      text-align: center;
-    }
+    <script>
+      const ctx = document.getElementById('bookTypesChart').getContext('2d');
+      const labels = <%- JSON.stringify(types.map(type => type.growby_level)) %>;
+      const data = <%- JSON.stringify(types.map(type => type.borrow_count)) %>;
 
-    h2 {
-      margin-bottom: 20px;
-      color: #333;
-    }
+      const backgroundColors = labels.map((level) => {
+        const colors = {
+          'Green': 'rgba(75, 192, 192, 0.2)', // Green
+          'Red': 'rgba(255, 99, 132, 0.2)', // Red
+          'Yellow': 'rgba(255, 206, 86, 0.2)', // Yellow
+          'Orange': 'rgba(255, 159, 64, 0.2)', // Orange
+          'Blue': 'rgba(54, 162, 235, 0.2)' // Blue
+        };
+        return colors[level] || 'rgba(199, 199, 199, 0.2)'; // Default Grey
+      });
 
-    canvas {
-      margin-top: 20px;
-    }
-  </style>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-</head>
-<body>
+      const borderColors = labels.map((level) => {
+        const colors = {
+          'Green': 'rgba(75, 192, 192, 1)', // Green
+          'Red': 'rgba(255, 99, 132, 1)', // Red
+          'Yellow': 'rgba(255, 206, 86, 1)', // Yellow
+          'Orange': 'rgba(255, 159, 64, 1)', // Orange
+          'Blue': 'rgba(54, 162, 235, 1)' // Blue
+        };
+        return colors[level] || 'rgba(199, 199, 199, 1)'; // Default Grey
+      });
 
-  <div class="page-container">
-    <h2>Book Types</h2>
-    <canvas id="bookTypesChart"></canvas>
-  </div>
-
-  <script>
-    const ctx = document.getElementById('bookTypesChart').getContext('2d');
-    const bookTypesChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: <%- JSON.stringify(books.map(book => book.b_name)) %>,
-        datasets: [{
-          label: 'Availability',
-          data: <%- JSON.stringify(books.map(book => book.availability)) %>,
-          backgroundColor: 'rgba(54, 162, 235, 0.2)',
-          borderColor: 'rgba(54, 162, 235, 1)',
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
+      const bookTypesChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Borrow Count',
+            data: data,
+            backgroundColor: backgroundColors,
+            borderColor: borderColors,
+            borderWidth: 2
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          },
+          plugins: {
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  const levelDescriptions = {
+                    'Green': 'Beginner',
+                    'Red': 'Advanced',
+                    'Yellow': 'Intermediate',
+                    'Orange': 'Thrilling/Engaging',
+                    'Blue': 'Academic/Scientific'
+                  };
+                  return `${context.dataset.label}: ${context.raw} (${levelDescriptions[context.label] || 'Unknown'})`;
+                }
+              }
+            }
           }
         }
-      }
-    });
-  </script>
-
-</body>
+      });
+    </script>
+  </body>
 </html>

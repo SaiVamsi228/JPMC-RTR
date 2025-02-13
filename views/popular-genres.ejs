@@ -48,10 +48,10 @@
     const popularGenresChart = new Chart(ctx, {
       type: 'bar',
       data: {
-        labels: <%- JSON.stringify(books.map(book => book.b_name)) %>,
+        labels: <%- JSON.stringify(genres.map(genre => genre.b_genre)) %>,
         datasets: [{
-          label: 'Checkout Count',
-          data: <%- JSON.stringify(books.map(book => book.checkout_count)) %>,
+          label: 'Borrow Count',
+          data: <%- JSON.stringify(genres.map(genre => genre.borrow_count)) %>,
           backgroundColor: 'rgba(255, 159, 64, 0.2)',
           borderColor: 'rgba(255, 159, 64, 1)',
           borderWidth: 1

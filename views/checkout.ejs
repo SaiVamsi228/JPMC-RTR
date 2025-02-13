@@ -1,10 +1,9 @@
-<!-- filepath: /views/checkout.ejs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Check-Out</title>
+  <title>Check-out</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -16,13 +15,12 @@
       margin: 0;
     }
 
-    .page-container {
+    .form-container {
       background-color: #fff;
       padding: 20px;
       border-radius: 8px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      width: 80%;
-      max-width: 400px;
+      width: 300px;
       text-align: center;
     }
 
@@ -36,37 +34,45 @@
       flex-direction: column;
     }
 
-    input[type="text"] {
-      padding: 10px;
-      margin-bottom: 10px;
-      border: 1px solid #ddd;
-      border-radius: 4px;
+    label {
+      margin-bottom: 5px;
+      color: #555;
+      text-align: left;
     }
 
-    input[type="submit"] {
+    input {
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-size: 14px;
+    }
+
+    button {
       padding: 10px;
       background-color: #007bff;
       color: #fff;
       border: none;
       border-radius: 4px;
+      font-size: 16px;
       cursor: pointer;
     }
 
-    input[type="submit"]:hover {
+    button:hover {
       background-color: #0056b3;
     }
   </style>
 </head>
 <body>
-
-  <div class="page-container">
-    <h2>Check-Out</h2>
+  <div class="form-container">
+    <h2>Check-out</h2>
     <form action="/checkout" method="POST">
-      <input type="text" name="s_id" placeholder="Student ID" required>
-      <input type="text" name="b_id" placeholder="Book ID" required>
-      <input type="submit" value="Check-Out">
+      <label for="s_id">Student ID:</label>
+      <input type="text" id="s_id" name="s_id" required>
+      <label for="b_id">Book ID:</label>
+      <input type="text" id="b_id" name="b_id" required>
+      <button type="submit">Check-out</button>
     </form>
   </div>
-
 </body>
 </html>

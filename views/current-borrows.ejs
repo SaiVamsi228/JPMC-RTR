@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Currently Borrowed Books</title>
+  <title>Current Borrows</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -15,7 +15,7 @@
       margin: 0;
     }
 
-    .page-container {
+    .borrows-container {
       background-color: #fff;
       padding: 20px;
       border-radius: 8px;
@@ -33,37 +33,34 @@
     table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 20px;
-    }
-
-    table, th, td {
-      border: 1px solid #ddd;
     }
 
     th, td {
-      padding: 8px;
+      padding: 10px;
+      border: 1px solid #ddd;
       text-align: left;
     }
 
     th {
-      background-color: #f2f2f2;
+      background-color: #f4f4f9;
     }
   </style>
 </head>
 <body>
-
-  <div class="page-container">
-    <h2>Currently Borrowed Books</h2>
+  <div class="borrows-container">
+    <h2>Current Borrows</h2>
     <table>
       <thead>
         <tr>
+          <th>Student ID</th>
           <th>Book ID</th>
-          <th>Check Out Time</th>
+          <th>Check-Out Time</th>
         </tr>
       </thead>
       <tbody>
-        <% currentBorrowed.forEach(record => { %>
+        <% borrows.forEach(record => { %>
           <tr>
+            <td><%= record.s_id %></td>
             <td><%= record.b_id %></td>
             <td><%= record.check_out_time %></td>
           </tr>
@@ -71,6 +68,5 @@
       </tbody>
     </table>
   </div>
-
 </body>
 </html>
